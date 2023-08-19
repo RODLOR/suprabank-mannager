@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      html {
+	--scrollbar-bg: transparent;
+	--scrollbar-fg: hsl(0 0% 0% / 0.15);
+}
+
+* {
+	scrollbar-color: var(--scrollbar-fg) var(--scrollbar-bg);
+	scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+	appearance: none;
+	block-size: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--scrollbar-fg);
+	border-radius: 1e5px;
+	border: 0.125rem aolid var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-track {
+	background: var(--scrollbar-bg);
+}
+
+      *:focus, *:active, * {
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+    }</style>
+
+    <title>SupraBank</title>
+  </head>
+  <body class="bg-white dark:bg-slate-800">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+      
+      // Whenever the user explicitly chooses light mode
+      localStorage.theme = 'light'
+      
+      // Whenever the user explicitly chooses dark mode
+      localStorage.theme = 'dark'
+      
+      // Whenever the user explicitly chooses to respect the OS preference
+      localStorage.removeItem('theme')</script>
+  </body>
+</html>
